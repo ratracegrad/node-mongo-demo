@@ -1,11 +1,16 @@
-var express = require("express");
-var app = express();
-var port = 3000;
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const express = require("express");
+const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
 
-var mongoose = require("mongoose");
+var app = express();
+var port = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost:27017/node-demo");
 var nameSchema = new mongoose.Schema({
